@@ -1,7 +1,6 @@
 FROM acoshift/go-scratch
 
 ADD entrypoint /entrypoint
-RUN mkdir -p dist
 COPY index.html /dist/index.html
 COPY css /dist/css
 COPY js /dist/js
