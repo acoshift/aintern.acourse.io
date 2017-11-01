@@ -1,8 +1,13 @@
 package main
 
 import (
+	"context"
 	"log"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
 
 	"github.com/acoshift/middleware"
 )
@@ -19,7 +24,25 @@ func main() {
 	)(m)
 
 	log.Println("Start Web Sever on :8080")
-	log.Fatal(http.ListenAndServe(":8080", h))
+	srv := &http.Server{
+		Addr:    ":8080",
+		Handler: h,
+	}
+	go func() {
+		if err := srv.ListenAndServe(); err != http.ErrServerClosed {
+			log.Fatal(err)
+		}
+	}()
+
+	stop := make(chan os.Signal, 1)
+	signal.Notify(stop, syscall.SIGTERM)
+	<-stop
+
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+	if err := srv.Shutdown(ctx); err != nil {
+		log.Println(err)
+	}
 }
 
 func cacheControl(h http.Handler) http.Handler {
