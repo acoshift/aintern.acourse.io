@@ -4,9 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/acoshift/gzip"
 	"github.com/acoshift/middleware"
-	"github.com/acoshift/redirecthttps"
 )
 
 func main() {
@@ -17,8 +15,6 @@ func main() {
 	})
 
 	h := middleware.Chain(
-		redirecthttps.New(redirecthttps.Config{Mode: redirecthttps.OnlyProxy}),
-		gzip.New(gzip.DefaultConfig),
 		cacheControl,
 	)(m)
 
