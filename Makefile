@@ -8,7 +8,7 @@ dev:
 	live-server --mount=/:assets/ src/
 
 deploy: clean build
-	gsutil -m rm -rf gs://$(WEB)/**
+	-gsutil -m rm -rf gs://$(WEB)/**
 	gsutil -m -h "Cache-Control: public, max-age=3600" cp -r assets/* gs://$(WEB)
 	gsutil \
 		-m \
