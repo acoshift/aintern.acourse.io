@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "acourse-d9d0a"
+  },
+  "targets": {
+    "acourse-d9d0a": {
+      "hosting": {
+        "default": [
+          "aintern-acourse-d9d0a"
+        ]
+      }
+    }
+  }
+}
