@@ -1,12 +1,8 @@
 default:
-	# `make deploy` build and deploy to production
 	# `make dev` starts server in localhost:8080
 
 dev:
 	live-server --mount=/:assets/ src/
-
-deploy: clean public
-	firebase deploy
 
 clean:
 	rm -rf public/
@@ -15,7 +11,7 @@ clean:
 public:
 	mkdir -p public
 	cp -r assets/* public/
-	html-minifier \
+	npx html-minifier \
 		--collapse-boolean-attributes \
 		--collapse-inline-tag-whitespace \
 		--collapse-whitespace \
@@ -33,6 +29,3 @@ public:
 		--input-dir src \
 		--output-dir public
 	# find public -name '*.html' | while read f; do mv "$$f" "$${f%.html}"; done
-
-setup:
-	npm install -g live-server html-minifier
