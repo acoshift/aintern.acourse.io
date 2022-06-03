@@ -1,3 +1,13 @@
 .DS_Store
 .firebase
 public/
+node_modules/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.idea
+.vscode

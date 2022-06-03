@@ -1,0 +1,10 @@
+{
+  "name": "aintern.acourse.io",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "yarn@3.2.1",
+  "devDependencies": {
+    "html-minifier": "^4.0.0",
+    "live-server": "^1.2.2"
+  }
+}
